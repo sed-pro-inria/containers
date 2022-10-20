@@ -38,7 +38,7 @@ jobs:
           context: .
           file: mlflow/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: registry.gitlab.inria.fr/${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
       - 
