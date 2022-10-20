@@ -22,7 +22,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: name/app
+          images: mdiazmel/containers
       -
         name: Login to Gitlab Registry
         if: github.event_name != 'pull_request'
