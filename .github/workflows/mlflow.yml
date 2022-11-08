@@ -22,7 +22,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: mdiazmel/containers/mlflow
+          images: sed-paris/mpp/containers/mlflow
           tags: |
             type=ref,event=branch
             type=ref,event=pr
