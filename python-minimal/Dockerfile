@@ -1,7 +1,7 @@
 # bring in the micromamba image so we can copy files from it
 FROM mambaorg/micromamba:1.0.0 as micromamba
 
-FROM registry.gitlab.inria.fr/sed-paris/mpp/containers/base-debian-slim:main
+FROM registry.gitlab.inria.fr/sed-paris/mpp/containers/debian-slim-base:main
 
 LABEL name="python-minimal"
 
