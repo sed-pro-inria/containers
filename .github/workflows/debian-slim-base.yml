@@ -22,7 +22,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: sed-paris/mpp/containers/base-debian-slim
+          images: sed-paris/mpp/containers/debian-slim-base
           tags: |
             type=ref,event=branch
             type=ref,event=pr
