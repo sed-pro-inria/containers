@@ -7,8 +7,7 @@ RUN micromamba install --yes --name base --channel conda-forge \
       jupyterlab \
       jupyterlab-git && \
     rm -rf "${HOME}/.local" && \  
-    micromamba clean --all --yes && \
-    jupyterlab clean
+    micromamba clean --all --yes
 
 EXPOSE 8888
 
