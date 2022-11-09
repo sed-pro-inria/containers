@@ -3,6 +3,8 @@ FROM mambaorg/micromamba:1.0.0 as micromamba
 
 FROM registry.gitlab.inria.fr/sed-paris/mpp/containers/base-debian-slim:main
 
+LABEL name="python-minimal"
+
 ARG PYTHON_VERSION="3.10.6"
 ARG MAMBA_USER=${USERNAME}
 ARG MAMBA_USER_ID=${UID}
