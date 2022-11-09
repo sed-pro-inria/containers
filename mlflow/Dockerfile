@@ -1,9 +1,10 @@
-FROM python:3.10-slim-buster
+
+FROM registry.gitlab.inria.fr/sed-paris/mpp/containers/python-minimal:main
 LABEL name="mlflow"
 
-ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
-RUN pip install boto3 && \
-    pip install mlflow==1.30.0
+RUN micromamba install --yes --name base --channel conda-forge \
+      mlflow="1.30.0" && \
+    micromamba clean --all --yes
 
 ENTRYPOINT ["mlflow", "server"]
