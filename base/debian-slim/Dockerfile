@@ -31,6 +31,7 @@ RUN apt-get update && \
       tar \
       curl \
       bzip2 \
+      git \
       locales && \
     locale-gen en_US.UTF-8 && dpkg-reconfigure locales  
 
