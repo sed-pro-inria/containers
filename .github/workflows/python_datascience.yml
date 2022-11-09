@@ -40,7 +40,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: ./python-datascience
           file: python-datascience/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: registry.gitlab.inria.fr/${{ steps.meta.outputs.tags }}
