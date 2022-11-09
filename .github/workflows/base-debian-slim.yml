@@ -1,4 +1,4 @@
-name: Build and Pull mlflow image
+name: Build and Pull Debian-slim base image
 
 on:
   #schedule:
