@@ -6,10 +6,6 @@ SHELL ["/bin/bash", "-c"]
 ENV SHELL="/bin/bash"
 ENV DEBIAN_FRONTEND="noninteractive"
 
-# Set locales
-ENV LC_ALL="en_US.UTF-8"
-ENV LANG="en_US.UTF-8"
-
 # Setup user & workspace
 ENV USERNAME="mpp-user"
 ENV UID="1000"
@@ -34,7 +30,13 @@ RUN apt-get update && \
       wget \
       tar \
       curl \
-      bzip2
+      bzip2 \
+      locales && \
+    locale-gen en_US.UTF-8 && dpkg-reconfigure locales  
+
+# Set locales
+ENV LC_ALL="en_US.UTF-8"
+ENV LANG="en_US.UTF-8"
 
 USER ${USERNAME}
 
