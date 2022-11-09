@@ -1,0 +1,18 @@
+channels:
+  - conda-forge
+
+dependencies:
+  - beautifulsoup4
+  - bokeh
+  - dask
+  - gensim
+  - geopandas
+  - matplotlib-base
+  - nltk
+  - numba
+  - plotly
+  - seaborn
+  - scikit-learn
+  - scipy
+  - statsmodels
+  - xgboost
