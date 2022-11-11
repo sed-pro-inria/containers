@@ -93,3 +93,7 @@ jobs:
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+
+      - name: Push to registry
+        if: ${{ inputs.push == 'true' }}
+        run: docker push ${{ steps.meta.outputs.tags }}
