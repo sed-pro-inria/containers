@@ -1,0 +1,90 @@
+name: Template to build and upload images
+
+on:
+  workflow_call:
+    inputs:
+      test:
+        description: should test
+        required: true
+        type: string
+      push:
+        description: should push
+        required: true
+        type: string
+      image:
+        description: name of docker image
+        required: true
+        type: string
+      context:
+        description: context of docker image
+        required: true
+        type: string
+      base_image:
+        description: context of docker image
+        required: true
+        type: string
+      base_image_gpu:
+        description: context of docker image
+        required: true
+        type: string
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - base_image: ${{ inputs.base_image }}
+            device_suffix: ""
+          - base_image: ${{ inputs.base_image_gpu }}
+            device_suffix: "-gpu"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: sed-paris/mpp/containers/mpp-${{ inputs.image }}
+          tags: |
+            # set latest tag for main branch
+            type=raw,value=latest${{ matrix.device_suffix }},enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            # propagate valid semver tags
+            type=semver,pattern={{raw}}${{ matrix.device_suffix }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to Gitlab Registry
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v2
+        with:
+          registry: registry.gitlab.inria.fr
+          username: ${{ secrets.GITLAB_REGISTRY_USERNAME }}
+          password: ${{ secrets.GITLAB_REGISTRY_TOKEN }}
+
+      # https://github.com/actions/virtual-environments/issues/2840
+      - name: Make free space
+        run: |
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/share/boost "$AGENT_TOOLSDIRECTORY"
+        shell: bash
+
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: ${{ inputs.context }}/
+          file: ${{ inputs.context }}/Dockerfile
+          load: true
+          build-args: |
+            BASE_IMAGE=${{ matrix.base_image }}
+            DEVICE_SUFFIX=${{ matrix.device_suffix }}
+          tags: registry.gitlab.inria.fr/${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.docker_meta.outputs.labels }}
+
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}

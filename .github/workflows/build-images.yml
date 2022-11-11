@@ -1,0 +1,46 @@
+name: Build images
+
+on:
+  #schedule:
+  #- cron: "0 10 * * *" # everyday at 10am
+  push:
+    branches:
+      - "**"
+    tags:
+      - "*"
+  pull_request:
+
+jobs:
+  base:
+    uses: .github/workflows/main-workflow-template.yml
+    with:
+      image: base
+      context: base
+      test: true
+      push: true
+      base_image: ubuntu-latest
+      base_image_gpu: nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu20.04  
+  python-minimal:
+    if: ${{ inputs.chain == 'python' || inputs.chain == 'all'  }}
+    needs: [base]
+    uses: .github/workflows/main-workflow-template.yml
+    with:
+      image: python-minimal
+      context: python-minimal
+      test: false
+      push: true
+      base_image: inseefrlab/onyxia-base:latest
+      base_image_gpu: inseefrlab/onyxia-base:latest-gpu
+  python-datascience:
+    if: ${{ inputs.chain == 'python' || inputs.chain == 'all'  }}
+    needs: [python-minimal]
+    uses: ./.github/workflows/main-workflow-template.yml
+    with:
+      image: python-datascience
+      context: python-datascience
+      test: false
+      push: true
+      base_image: inseefrlab/onyxia-python-minimal:latest
+      base_image_gpu: inseefrlab/onyxia-python-minimal:latest-gpu      
+
+    
