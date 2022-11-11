@@ -1,5 +1,6 @@
 
-FROM registry.gitlab.inria.fr/sed-paris/mpp/containers/python-minimal:main
+ARG BASE_IMAGE=registry.gitlab.inria.fr/sed-paris/mpp/containers/python-minimal:main
+FROM $BASE_IMAGE
 LABEL name="python-datascience"
 
 COPY conda-env.yml .

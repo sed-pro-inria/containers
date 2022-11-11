@@ -1,8 +1,8 @@
 # bring in the micromamba image so we can copy files from it
 FROM mambaorg/micromamba:1.0.0 as micromamba
 
-FROM registry.gitlab.inria.fr/sed-paris/mpp/containers/debian-slim-base:main
-
+ARG BASE_IMAGE=registry.gitlab.inria.fr/sed-paris/mpp/containers/debian-slim-base:main
+FROM $BASE_IMAGE
 LABEL name="python-minimal"
 
 ARG PYTHON_VERSION="3.10.6"
@@ -24,7 +24,7 @@ COPY --from=micromamba /usr/local/bin/_dockerfile_initialize_user_accounts.sh /u
 COPY --from=micromamba /usr/local/bin/_dockerfile_setup_root_prefix.sh /usr/local/bin/_dockerfile_setup_root_prefix.sh
 
 RUN /usr/local/bin/_dockerfile_initialize_user_accounts.sh && \
-    /usr/local/bin/_dockerfile_setup_root_prefix.sh
+  /usr/local/bin/_dockerfile_setup_root_prefix.sh
 
 USER $USERNAME
 
@@ -39,5 +39,5 @@ ENTRYPOINT ["/usr/local/bin/_entrypoint.sh"]
 CMD ["/bin/bash"]
 
 RUN micromamba install --yes --name base --channel conda-forge \
-      python="${PYTHON_VERSION}" && \
-    micromamba clean --all --yes
+  python="${PYTHON_VERSION}" && \
+  micromamba clean --all --yes
