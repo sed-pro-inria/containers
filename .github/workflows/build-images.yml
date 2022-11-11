@@ -12,6 +12,9 @@ on:
 
 jobs:
   base:
+    secrets:
+      GITLAB_REGISTRY_USERNAME: ${{ secrets.GITLAB_REGISTRY_USERNAME }}
+      GITLAB_REGISTRY_TOKEN: ${{ secrets.GITLAB_REGISTRY_TOKEN }}
     uses: ./.github/workflows/main-workflow-template.yml
     with:
       image: base
@@ -22,6 +25,9 @@ jobs:
       base_image_gpu: nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu20.04
   python-minimal:
     if: ${{ inputs.chain == 'python' || inputs.chain == 'all'  }}
+    secrets:
+      GITLAB_REGISTRY_USERNAME: ${{ secrets.GITLAB_REGISTRY_USERNAME }}
+      GITLAB_REGISTRY_TOKEN: ${{ secrets.GITLAB_REGISTRY_TOKEN }}
     needs: [base]
     uses: ./.github/workflows/main-workflow-template.yml
     with:
@@ -33,6 +39,9 @@ jobs:
       base_image_gpu: registry.gitlab.inria.fr/sed-paris/mpp/containers/mpp-base:latest-gpu
   python-datascience:
     if: ${{ inputs.chain == 'python' || inputs.chain == 'all'  }}
+    secrets:
+      GITLAB_REGISTRY_USERNAME: ${{ secrets.GITLAB_REGISTRY_USERNAME }}
+      GITLAB_REGISTRY_TOKEN: ${{ secrets.GITLAB_REGISTRY_TOKEN }}
     needs: [python-minimal]
     uses: ./.github/workflows/main-workflow-template.yml
     with:

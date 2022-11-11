@@ -27,6 +27,11 @@ on:
         description: context of docker image
         required: true
         type: string
+    secrets:
+      GITLAB_REGISTRY_USERNAME:
+        required: false
+      GITLAB_REGISTRY_TOKEN:
+        required: false
 
 jobs:
   docker:
