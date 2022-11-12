@@ -1,5 +1,7 @@
 
-FROM registry.gitlab.inria.fr/sed-paris/mpp/containers/mpp-python-datascience
+ARG BASE_IMAGE=registry.gitlab.inria.fr/sed-paris/mpp/containers/mpp-python-datascience
+FROM $BASE_IMAGE
+
 LABEL name="jupyter-python"
 
 
