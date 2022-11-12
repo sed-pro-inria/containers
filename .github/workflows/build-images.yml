@@ -71,7 +71,7 @@ jobs:
     secrets:
       GITLAB_REGISTRY_USERNAME: ${{ secrets.GITLAB_REGISTRY_USERNAME }}
       GITLAB_REGISTRY_TOKEN: ${{ secrets.GITLAB_REGISTRY_TOKEN }}
-    needs: [python-minimal]
+    needs: [python-datascience]
     uses: ./.github/workflows/main-workflow-template.yml
     with:
       image: jupyter-python
@@ -85,7 +85,7 @@ jobs:
     secrets:
       GITLAB_REGISTRY_USERNAME: ${{ secrets.GITLAB_REGISTRY_USERNAME }}
       GITLAB_REGISTRY_TOKEN: ${{ secrets.GITLAB_REGISTRY_TOKEN }}
-    needs: [python-minimal]
+    needs: [python-datascience]
     uses: ./.github/workflows/main-workflow-template.yml
     with:
       image: mlflow
