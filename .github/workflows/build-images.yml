@@ -66,3 +66,31 @@ jobs:
       push: true
       base_image: registry.gitlab.inria.fr/sed-paris/mpp/containers/mpp-python-minimal:latest
       base_image_gpu: registry.gitlab.inria.fr/sed-paris/mpp/containers/mpp-python-minimal:latest-gpu
+  jupyter-python:
+    if: ${{ inputs.chain == 'python' || inputs.chain == 'all'  }}
+    secrets:
+      GITLAB_REGISTRY_USERNAME: ${{ secrets.GITLAB_REGISTRY_USERNAME }}
+      GITLAB_REGISTRY_TOKEN: ${{ secrets.GITLAB_REGISTRY_TOKEN }}
+    needs: [python-minimal]
+    uses: ./.github/workflows/main-workflow-template.yml
+    with:
+      image: jupyter-python
+      context: jupyter-python
+      test: false
+      push: true
+      base_image: registry.gitlab.inria.fr/sed-paris/mpp/containers/mpp-python-datascience:latest
+      base_image_gpu: registry.gitlab.inria.fr/sed-paris/mpp/containers/mpp-python-datascience:latest-gpu
+  mlflow:
+    if: ${{ inputs.chain == 'python' || inputs.chain == 'all'  }}
+    secrets:
+      GITLAB_REGISTRY_USERNAME: ${{ secrets.GITLAB_REGISTRY_USERNAME }}
+      GITLAB_REGISTRY_TOKEN: ${{ secrets.GITLAB_REGISTRY_TOKEN }}
+    needs: [python-minimal]
+    uses: ./.github/workflows/main-workflow-template.yml
+    with:
+      image: mlflow
+      context: mlflow
+      test: false
+      push: true
+      base_image: registry.gitlab.inria.fr/sed-paris/mpp/containers/mpp-python-datascience:latest
+      base_image_gpu: registry.gitlab.inria.fr/sed-paris/mpp/containers/mpp-python-datascience:latest-gpu
