@@ -1,13 +1,13 @@
 
-FROM registry.gitlab.inria.fr/sed-paris/mpp/containers/python-datascience:main
+FROM registry.gitlab.inria.fr/sed-paris/mpp/containers/mpp-python-datascience
 LABEL name="jupyter-python"
 
 
 RUN micromamba install --yes --name base --channel conda-forge \
-      jupyterlab \
-      jupyterlab-git && \
-    rm -rf "${HOME}/.local" && \  
-    micromamba clean --all --yes
+  jupyterlab \
+  jupyterlab-git && \
+  rm -rf "${HOME}/.local" && \  
+  micromamba clean --all --yes
 
 EXPOSE 8888
 

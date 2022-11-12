@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=registry.gitlab.inria.fr/sed-paris/mpp/containers/debian-slim-base:main
+ARG BASE_IMAGE=registry.gitlab.inria.fr/sed-paris/mpp/containers/mpp-base
 FROM $BASE_IMAGE
 LABEL name="python-minimal"
 

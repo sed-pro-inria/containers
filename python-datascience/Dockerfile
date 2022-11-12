@@ -1,5 +1,5 @@
 
-ARG BASE_IMAGE=registry.gitlab.inria.fr/sed-paris/mpp/containers/python-minimal:main
+ARG BASE_IMAGE=registry.gitlab.inria.fr/sed-paris/mpp/containers/mpp-python-minimal
 FROM $BASE_IMAGE
 LABEL name="python-datascience"
 
