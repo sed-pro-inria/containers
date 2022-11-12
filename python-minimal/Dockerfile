@@ -1,9 +1,9 @@
-# bring in the micromamba image so we can copy files from it
-FROM mambaorg/micromamba:1.0.0 as micromamba
-
 ARG BASE_IMAGE=registry.gitlab.inria.fr/sed-paris/mpp/containers/debian-slim-base:main
 FROM $BASE_IMAGE
 LABEL name="python-minimal"
+
+# bring in the micromamba image so we can copy files from it
+FROM mambaorg/micromamba:1.0.0 as micromamba
 
 ARG PYTHON_VERSION="3.10.6"
 ARG MAMBA_USER=${USERNAME}
