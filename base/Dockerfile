@@ -1,6 +1,6 @@
 ARG BASE_IMAGE=debian:stable-slim
 FROM $BASE_IMAGE
-LABEL name="base-debian-slim"
+LABEL name="base-slim"
 
 # System-wide configuration
 SHELL ["/bin/bash", "-c"]
