@@ -1,4 +1,5 @@
-FROM debian:stable-slim
+ARG BASE_IMAGE=debian:stable-slim
+FROM $BASE_IMAGE
 LABEL name="base-debian-slim"
 
 # System-wide configuration
@@ -27,12 +28,12 @@ USER root
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y \
-      wget \
-      tar \
-      curl \
-      bzip2 \
-      git \
-      locales && \
+    wget \
+    tar \
+    curl \
+    bzip2 \
+    git \
+    locales && \
     locale-gen en_US.UTF-8 && dpkg-reconfigure locales  
 
 # Set locales
@@ -46,5 +47,5 @@ ENV LC_ALL en_US.UTF-8
 USER ${USERNAME}
 
 CMD ["/bin/bash"]
-      
+
 
