@@ -4,6 +4,8 @@ FROM $BASE_IMAGE
 LABEL name="mlflow"
 
 
-RUN pip install mlflow[extras]==2.1.1 psycopg2-binary boto3
+RUN micromamba install --yes --name base --channel conda-forge \
+  mlflow="2.1.1" && \
+  micromamba clean --all --yes
 
 ENTRYPOINT ["mlflow", "server"]
