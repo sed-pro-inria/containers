@@ -6,7 +6,7 @@ FROM mambaorg/micromamba:1.0.0 as micromamba
 FROM $BASE_IMAGE
 LABEL name="python-minimal"
 
-ARG PYTHON_VERSION="3.10.6"
+ARG PYTHON_VERSION="3.10.9"
 ARG MAMBA_USER=${USERNAME}
 ARG MAMBA_USER_ID=${UID}
 ARG MAMBA_USER_GID=${GID}
