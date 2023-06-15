@@ -4,13 +4,14 @@ LABEL name="jupyter-python"
 
 
 RUN micromamba install --yes --name base --channel conda-forge \
+    pip \
     jupyterlab \
     jupyterlab-git && \
     rm -rf "${HOME}/.local" && \  
     micromamba clean --all --yes
 
 RUN micromamba install --yes --name base --channel aramislab \
-    ants && \
+    ants==2.4.4 && \
     rm -rf "${HOME}/.local" && \  
     micromamba clean --all --yes  
 
