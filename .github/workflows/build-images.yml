@@ -106,5 +106,5 @@ jobs:
       context: clinica-t1linear
       test: false
       push: true
-      base_image: registry.gitlab.inria.fr/sed-paris/mpp/containers/mpp-python-datascience:latest
-      base_image_gpu: registry.gitlab.inria.fr/sed-paris/mpp/containers/mpp-python-datascience:latest-gpu
+      base_image: inseefrlab/onyxia-jupyter-python:latest
+      base_image_gpu: inseefrlab/onyxia-jupyter-python:latest-gpu
