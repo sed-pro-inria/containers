@@ -1,6 +1,7 @@
-ARG BASE_IMAGE=registry.gitlab.inria.fr/sed-paris/mpp/containers/mpp-python-datascience
+ARG BASE_IMAGE=inseefrlab/onyxia-jupyter-python:py3.10.9-2023.06.12
+
 FROM $BASE_IMAGE
-LABEL name="jupyter-python"
+LABEL name="clinica-t1linear"
 
 COPY conda-env.yml .
 
