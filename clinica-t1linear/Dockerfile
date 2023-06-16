@@ -5,10 +5,10 @@ LABEL name="clinica-t1linear"
 
 COPY conda-env.yml .
 
-RUN micromamba install --yes --name base -f conda-env.yml && \
+RUN mamba env update -n base -f conda-env.yml && \
     rm conda-env.yml && \
     rm -rf "${HOME}/.local" && \ 
-    micromamba clean --all --yes
+    mamba clean --all -f -y
 
 EXPOSE 8888
 
