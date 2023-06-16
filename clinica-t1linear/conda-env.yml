@@ -1,0 +1,10 @@
+name: base
+channels:
+  - aramislab
+  - conda-forge
+dependencies:
+  - jupyterlab
+  - jupyterlab-git
+  - ants==2.4.4
+  - pip:
+      - clinica
