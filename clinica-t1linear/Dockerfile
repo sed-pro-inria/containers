@@ -10,7 +10,7 @@ RUN micromamba install --yes --name base --channel conda-forge \
     rm -rf "${HOME}/.local" && \  
     micromamba clean --all --yes
 
-RUN micromamba install --yes --name base --channel aramislab \
+RUN micromamba install --yes --name base --channel aramislab --channel conda-forge \
     ants==2.4.4 && \
     rm -rf "${HOME}/.local" && \  
     micromamba clean --all --yes  
