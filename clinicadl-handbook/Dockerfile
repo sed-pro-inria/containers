@@ -1,7 +1,7 @@
 ARG BASE_IMAGE=inseefrlab/onyxia-jupyter-python:py3.10.9-2023.06.12
 
 FROM $BASE_IMAGE
-LABEL name="clinica-t1linear"
+LABEL name="clinicadl-handbook"
 
 COPY conda-env.yml .
 
