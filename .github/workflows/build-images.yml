@@ -110,3 +110,17 @@ jobs:
       push: true
       base_image: inseefrlab/onyxia-jupyter-python:latest
       base_image_gpu: inseefrlab/onyxia-jupyter-python:latest-gpu
+  clinicadl-handbook:
+    if: ${{ inputs.chain == 'inria_catalogue' || inputs.chain == 'all'  }}
+    secrets:
+      GITLAB_REGISTRY_USERNAME: ${{ secrets.GITLAB_REGISTRY_USERNAME }}
+      GITLAB_REGISTRY_TOKEN: ${{ secrets.GITLAB_REGISTRY_TOKEN }}
+    #needs: [python-datascience]
+    uses: ./.github/workflows/main-workflow-template.yml
+    with:
+      image: clinicadl-handbook
+      context: clinicadl-handbook
+      test: false
+      push: true
+      base_image: inseefrlab/onyxia-jupyter-python:latest
+      base_image_gpu: inseefrlab/onyxia-jupyter-python:latest-gpu    
