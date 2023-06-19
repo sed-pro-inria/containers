@@ -11,6 +11,7 @@ on:
           - all
           - python
           - r
+          - inria_catalogue
   # schedule:
   # every day at midnight for test
   # - cron: "0 0 * * *"
@@ -27,6 +28,7 @@ on:
 
 jobs:
   base:
+    if: ${{ inputs.chain == 'python' || inputs.chain == 'all'  }}
     secrets:
       GITLAB_REGISTRY_USERNAME: ${{ secrets.GITLAB_REGISTRY_USERNAME }}
       GITLAB_REGISTRY_TOKEN: ${{ secrets.GITLAB_REGISTRY_TOKEN }}
@@ -95,11 +97,11 @@ jobs:
       base_image: registry.gitlab.inria.fr/sed-paris/mpp/containers/mpp-python-datascience:latest
       base_image_gpu: registry.gitlab.inria.fr/sed-paris/mpp/containers/mpp-python-datascience:latest-gpu
   clinica-t1linear:
-    if: ${{ inputs.chain == 'python' || inputs.chain == 'all'  }}
+    if: ${{ inputs.chain == 'inria_catalogue' || inputs.chain == 'all'  }}
     secrets:
       GITLAB_REGISTRY_USERNAME: ${{ secrets.GITLAB_REGISTRY_USERNAME }}
       GITLAB_REGISTRY_TOKEN: ${{ secrets.GITLAB_REGISTRY_TOKEN }}
-    needs: [python-datascience]
+    #needs: [python-datascience]
     uses: ./.github/workflows/main-workflow-template.yml
     with:
       image: clinica-t1linear
