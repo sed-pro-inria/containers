@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=inseefrlab/onyxia-jupyter-python:py3.10.9-2023.06.12
+ARG BASE_IMAGE=inseefrlab/onyxia-jupyter-pytorch:py3.9.16-gpu-2023.06.19
 
 FROM $BASE_IMAGE
 LABEL name="clinicadl-handbook"

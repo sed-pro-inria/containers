@@ -122,5 +122,5 @@ jobs:
       context: clinicadl-handbook
       test: false
       push: true
-      base_image: inseefrlab/onyxia-jupyter-python:latest
-      base_image_gpu: inseefrlab/onyxia-jupyter-python:latest-gpu    
+      base_image: inseefrlab/onyxia-python-pytorch:latest
+      base_image_gpu: inseefrlab/onyxia-python-pytorch:latest-gpu    
